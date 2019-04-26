@@ -1,4 +1,7 @@
 # coding=utf-8
+"""
+There are currently problems on the regression quadratic
+"""
 
 from sympy import *
 
