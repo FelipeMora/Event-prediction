@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from sympy import *
 
 
@@ -24,7 +26,7 @@ Predict fi people made a roast in a day with a temperature of 85
 |---70---|---80---|
 |-----------------|
 
- Coeficiente de Correlación 0.44786246684374104
+ Correlation coefficient 0.44786246684374104
 |---------------------------------------------|
 | Y = 35.36816037735849 + 0.5540094339622641x |
 |---------------------------------------------|
@@ -51,10 +53,18 @@ Predict fi people made a roast in a day with a temperature of 85
 
     @property
     def wind(self):
+        """
+        Property for see the value of wind
+        :return: boolean
+        """
         return self.__wind
 
     @property
     def climate(self):
+        """
+        Property for the value forecast
+        :return: string
+        """
         return self.__climate
 
     def __approach_humidity(self):
@@ -67,7 +77,7 @@ Predict fi people made a roast in a day with a temperature of 85
         self.__approach_concat_result("humidity", self.__humidity)
 
     def __approach_concat_result(self, dat, value):
-        self.approach_result = self.approach_result + " ~ " + dat + " : " + str(value)
+        self.approach_result = self.approach_result + dat + " : " + str(value) + "; "
 
     def __approach_wind(self):
         """
@@ -82,11 +92,15 @@ Predict fi people made a roast in a day with a temperature of 85
         """
         Evaluate the weather forecast, establishing different ranges with the help of a decision tree.
         """
-        if 72 <= self.__temperature <= 85 and 64 <= self.__humidity <= 90:
+        if 72 <= self.__temperature <= 85 \
+                and 64 <= self.__humidity <= 90:
             self.__climate = "SUNNY"
-        if 65 <= self.__temperature <= 80 and 70 <= self.__humidity <= 80:
+        if 65 <= self.__temperature <= 80 \
+                and 70 <= self.__humidity <= 80:
             self.__climate = "RAINY"
-
+        if 64 <= self.__temperature <= 83 \
+                and 65 <= self.__humidity <= 78:
+            self.__climate = "CLOUDY"
         self.__approach_concat_result("climate", self.__climate)
 
 
